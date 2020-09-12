@@ -1,0 +1,16 @@
+{
+  "name": "passionate-flipflop",
+  "version": "1.0.0",
+  "description": "Personal Website",
+  "main": "index.js",
+  "repository": "https://github.com/ConnorLacy/passionate-flipflop.git",
+  "author": "Connor Lacy <lacyconnor1409@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "prettier": "^2.1.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "4.0"
+  }
+}
