@@ -23,6 +23,8 @@ app.get('/', (req, res) => {
   })
 })
 
+app.use(express.static('./dist'))
+
 app.listen(PORT, () => {
   console.log(`Web server running on port: ${PORT}`)
 })
