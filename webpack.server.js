@@ -2,7 +2,8 @@ const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
-  entry: './src/server/index.js',
+  mode: process.env.NODE_ENV === 'development' ? 'development' : 'production',
+  entry: './src/server/index.tsx',
   target: 'node',
   externals: [nodeExternals()],
 
@@ -13,14 +14,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        include: path.resolve(__dirname, 'src', 'server'),
+        test: /\.(t|j)sx?$/,
+        // include: path.resolve(__dirname, 'src', 'server'),
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/react']
+          // cacheDirectory: true,
+          envName: 'server'
         }
       }
     ]
+  },
+  resolve: {
+    extensions: ['.jsx', '.js', '.ts', '.tsx']
   }
 }

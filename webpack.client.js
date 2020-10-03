@@ -1,27 +1,27 @@
 const path = require('path')
 
 module.exports = {
-  entry: './src/client/index.js',
+  mode: process.env.NODE_ENV === 'development' ? 'development' : 'production',
+  entry: './src/client/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist/client'),
-    filename: 'clientBundle.js'
+    filename: 'main.js'
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        include: [path.resolve(__dirname, 'src', 'client')],
+        test: /\.(t|j)sx?$/,
+        include: [path.resolve(__dirname, 'src')],
         loader: 'babel-loader',
         options: {
-          presets: ['es2015']
+          // cacheDirectory: true,
+          envName: 'client'
         }
       }
-    ],
-    resolve: {
-      modules: ['node_modules', path.resolve(__dirname, 'src', 'client')],
-      extensions: ['.js', '.json', '.jsx', '.css']
-    }
+    ]
   },
-  target: 'web',
-  externals: ['react']
+  resolve: {
+    extensions: ['.jsx', '.js', '.ts', '.tsx']
+  },
+  target: 'web'
 }
