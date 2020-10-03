@@ -26,6 +26,6 @@
       "esnext.asynciterable"
     ]
   },
-  "include": ["src", "bin", "types", "webpack"],
+  "include": ["src", "dist", "types", "webpack"],
   "exclude": ["node_modules"]
 }
