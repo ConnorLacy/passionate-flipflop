@@ -1,4 +1,4 @@
-module.exports = function clientPreset(options = {}) {
+module.exports = function clientPreset(_api, options = {}) {
   const {
     modules = false,
     corejs = 2,
@@ -16,24 +16,29 @@ module.exports = function clientPreset(options = {}) {
       {
         loose,
         modules,
-        shippedProposals,
-        useBuiltIns,
-        corejs,
+        // shippedProposals,
+        // useBuiltIns,
+        // corejs,
         targets: {
           browsers: production
             ? '>1%, not dead, not ie11, not op_mini all'
-            : 'last 2 Chrome versions,'
+            : 'last 2 Chrome versions'
         },
         debug
       }
-    ]
+    ],
+    require.resolve('@babel/preset-react')
   ]
 
   if (typescript) {
-    presets.push(require.resolve('@babel/preset-typescript'))
+    // presets.push(require.resolve('@babel/preset-typescript'))
   }
 
   const plugins = []
 
-  return { presets, plugins }
+  // return { presets, plugins }
+  const presetsAndShit = { presets, plugins }
+  console.log(JSON.stringify(presets, null, 2))
+  console.log(options)
+  return presetsAndShit
 }

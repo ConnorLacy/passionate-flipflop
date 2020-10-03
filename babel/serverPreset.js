@@ -1,14 +1,12 @@
-module.exports = function (options = {}) {
+module.exports = function serverPreset(_api, options = {}) {
   const {
     version = 'current',
-    modules = 'commonjs',
-    corejs = 3,
+    modules = false,
+    corejs = 2,
     debug = false,
     useBuiltIns = 'entry',
     typescript = false
   } = options
-
-  console.log(`Babel: Server config => ${options}`)
 
   const presets = [
     [
@@ -22,7 +20,8 @@ module.exports = function (options = {}) {
         },
         debug
       }
-    ]
+    ],
+    require.resolve('@babel/preset-react')
   ]
 
   const plugins = [
@@ -40,5 +39,8 @@ module.exports = function (options = {}) {
     presets.push(require.resolve('@babel/preset-typescript'))
   }
 
-  return { presets, plugins }
+  const presetsAndShit = { presets, plugins }
+  console.log(JSON.stringify(presets, null, 2))
+  console.log(options)
+  return presetsAndShit
 }
