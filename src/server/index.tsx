@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import express, { Request, Response, NextFunction } from 'express'
 
-import { App } from '../client/app.jsx'
+import { App } from '../components/app'
 
 const app = express()
 const PORT = 3000 || process.env.PORT
@@ -24,8 +24,10 @@ const handleRender = (req: Request, res: Response, next: NextFunction) => {
   </html>
   `)
 }
-
-app.use(express.static('dist'))
+app.use('/api', () => {
+  console.log('I am an api')
+})
+app.use('/assets', express.static('dist/client'))
 app.get('**', handleRender)
 app.listen(PORT, () => {
   console.log(`Web server running on port: ${PORT}`)
